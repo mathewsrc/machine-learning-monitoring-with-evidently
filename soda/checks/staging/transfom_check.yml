@@ -1,0 +1,98 @@
+checks for supplier_transformed_table:
+  - row_count:
+      fail:
+        when < 80
+        when > 500
+      name: Check the number of rows
+  - missing_count(contract_number): 
+      name: Ensure that there are no missing contract_number
+      fail: when > 0
+  - duplicate_count(contract_number):
+      name: Ensure that all rows are unique
+      fail: when > 0 
+  - invalid_count(start_date) = 0:
+      name: Ensure start date values are formatted as (yyyy/mm/dd)
+      valid format: date inverse
+  - invalid_count(end_date) = 0:
+      name: Ensure end date values are formatted as (yyyy/mm/dd)
+      valid format: date inverse
+  - invalid_count(has_outstanding_orders) = 0:
+      name: Ensure has_outstanding_orders column has valid values
+      valid values: [True, False]
+  - invalid_count(is_sole_source) = 0:
+      name: Ensure is_sole_source column has valid values
+      valid values: [True, False]
+  - invalid_count(end_month) = 0:
+      name: Ensure end_month range is between 1 to 12
+      valid max: 12
+      valid min: 1
+  - invalid_count(start_month) = 0:
+      name: Ensure start_month range is between 1 to 12
+      valid max: 12
+      valid min: 1
+  - invalid_count(contract_awarded_amount) = 0:
+      name: Ensure that the contract contract_awarded_amount is >= 0
+      valid min: 0
+  - invalid_count(purchase_orders_outstanding) = 0:
+      name: Ensure that the purchase_orders_outstanding is >= 0
+      valid min: 0
+  - invalid_count(payments_made) = 0:
+      name: Ensure that the payments_made is >= 0
+      valid min: 0
+  - invalid_count(remaining_contract_award_amount) = 0:
+      name: Ensure that the remaining_contract_award_amount is >= 0
+      valid min: 0
+  - exceeds_limit = 0:
+      exceeds_limit query: |
+        SELECT 
+          SUM(CASE 
+            WHEN payments_made + remaining_contract_award_amount > contract_awarded_amount THEN 1 
+            ELSE 0 
+          END) AS exceeds_limit
+        FROM supplier_transformed_table
+      name: Ensure that payment made remaining amount is not higher than the contract_awarded_amount 
+  - exceeds_date = 0:
+      exceeds_date query: |
+        SELECT 
+          SUM(CASE  
+            WHEN start_date > end_date THEN 1
+            ELSE 0
+          END) AS exceeds_date
+        FROM supplier_transformed_table
+      name: Ensure that start date is < end date
+  - schema:
+      name: Confirm that required columns are present
+      fail: 
+        when required column missing: ['contract_title', 'term_start_date', 'term_end_date', 
+                                      'contract_type', 'purchasing_authority', 'department_code',
+                                      'department', 'supplier_name_prime_contractor', 'supplier_name',
+                                      'project_team_lbe_status', 'supplier_type', 'scope_of_work',
+                                      'contract_awarded_amount', 'purchase_orders_outstanding',
+                                      'payments_made', 'remaining_contract_award_amount', 
+                                      'contract_number', 'non_profit', 'start_date', 'end_date',
+                                      'is_sole_source', 'has_outstanding_orders']
+
+        when wrong column type:
+            contract_title: varchar
+            term_start_date: varchar
+            term_end_date: varchar
+            contract_type: varchar
+            purchasing_authority: varchar
+            department_code: varchar
+            department: varchar
+            supplier_name_prime_contractor: varchar
+            supplier_name: varchar
+            project_team_lbe_status: varchar
+            supplier_type: varchar
+            scope_of_work: varchar
+            contract_awarded_amount: float
+            purchase_orders_outstanding: float
+            payments_made: float
+            remaining_contract_award_amount: float
+            contract_number: varchar
+            non_profit: varchar
+            start_date: date
+            end_date: date
+            is_sole_source: boolean
+            has_outstanding_orders: boolean
+
