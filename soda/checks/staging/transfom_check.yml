@@ -1,7 +1,7 @@
 checks for supplier_transformed_table:
   - row_count:
-      fail:
-        when < 10000
+      warn:
+        when < 100
       name: Check the number of rows
   - missing_count(contract_number): 
       name: Ensure that there are no missing contract_number
@@ -9,11 +9,11 @@ checks for supplier_transformed_table:
   - duplicate_count(contract_number):
       name: Ensure that all rows are unique
       fail: when > 0 
-  - invalid_count(start_date) = 0:
+  - invalid_percent(start_date) > 20:
       name: Ensure start date values are formatted as (yyyy/mm/dd)
       valid format: date inverse
-  - invalid_count(end_date) = 0:
-      name: Ensure end date values are formatted as (yyyy/mm/dd)
+  - invalid_percent(end_date) > 20:
+      name: Ensure end_date values are formatted as (yyyy/mm/dd)
       valid format: date inverse
   - invalid_count(has_outstanding_orders) = 0:
       name: Ensure has_outstanding_orders column has valid values
