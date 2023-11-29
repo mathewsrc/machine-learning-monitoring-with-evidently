@@ -1,8 +1,7 @@
 checks for supplier_transformed_table:
   - row_count:
       fail:
-        when < 80
-        when > 500
+        when < 10000
       name: Check the number of rows
   - missing_count(contract_number): 
       name: Ensure that there are no missing contract_number
@@ -93,6 +92,7 @@ checks for supplier_transformed_table:
             non_profit: varchar
             start_date: date
             end_date: date
-            is_sole_source: boolean
-            has_outstanding_orders: boolean
+            is_sole_source: integer
+            has_outstanding_orders: integer
+            is_non_profit: integer
 
