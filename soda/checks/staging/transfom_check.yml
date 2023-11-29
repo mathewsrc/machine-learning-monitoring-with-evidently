@@ -9,10 +9,10 @@ checks for supplier_transformed_table:
   - duplicate_count(contract_number):
       name: Ensure that all rows are unique
       fail: when > 0 
-  - invalid_percent(start_date) > 20:
+  - invalid_percent(start_date) < 20%:
       name: Ensure start date values are formatted as (yyyy/mm/dd)
       valid format: date inverse
-  - invalid_percent(end_date) > 20:
+  - invalid_percent(end_date) < 20%:
       name: Ensure end_date values are formatted as (yyyy/mm/dd)
       valid format: date inverse
   - invalid_count(has_outstanding_orders) = 0:
