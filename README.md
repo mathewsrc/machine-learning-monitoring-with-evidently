@@ -5,18 +5,38 @@ ML Monitoring Capstone
 Sections
 
 * [Problem Understading](#problem-understading)
-
+* [Architecture Overview](#architecture-overview)
+* [How to Run this Project](#how-to-run-this-project)
+  * [Prerequisites](#prerequisites)
+  * [Examples](#examples)
+* [Project Structure](project-structure)
 * [Data Collection](#data-collection)
 * [Data Preparation](#data-preparation)
 * [Model Training](#model-training)
 * [Model Evaluation](#model-evaluation)
 * [Model Deployment](#model-deployment)
 * [Model Monitoring](#model-monitoring)
-* [How to Run this Project](#how-to-run-this-project)
-  * [Requirements](#requirements)
-  * [Examples](#examples)
+
 
 ## Problem Understading
+
+TODO
+
+## Architecture Overview
+
+TODO
+
+## Project Structure
+
+TODO
+
+## How to Run this Project
+
+### Prerequisites
+
+TODO
+
+### Examples
 
 TODO
 
@@ -44,13 +64,7 @@ TODO
 
 TODO
 
-## How to Run this Project
 
-### Requirements
 
-TODO
 
-### Examples
-
-TODO
 
