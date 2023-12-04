@@ -64,6 +64,18 @@ TODO
 
 TODO
 
+TestSuit result (partially)
+
+![image](https://github.com/mathewsrc/machine-learning-monitoring-with-evidently/assets/94936606/b755b242-bacc-4c4f-b60e-935d444e1cc2)
+
+Metrics result (partially)
+
+![image](https://github.com/mathewsrc/machine-learning-monitoring-with-evidently/assets/94936606/ebc5ab66-c4b9-420e-b3f6-46e428a70f55)
+
+![image](https://github.com/mathewsrc/machine-learning-monitoring-with-evidently/assets/94936606/b9f0e1a2-fa96-4d46-aedf-7f2bbe8e211d)
+
+
+
 
 
 
