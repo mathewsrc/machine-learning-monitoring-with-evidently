@@ -48,6 +48,9 @@ TODO
 
 TODO
 
+![image](https://github.com/mathewsrc/machine-learning-monitoring-with-evidently/assets/94936606/35957339-272b-44e9-bac0-5e78d0e7d300)
+
+
 ## Model Training
 
 TODO
@@ -77,7 +80,6 @@ Reference dataset
 2021-01-01 00:00:00
 ```
 
-![image](https://github.com/mathewsrc/machine-learning-monitoring-with-evidently/assets/94936606/35957339-272b-44e9-bac0-5e78d0e7d300)
 
 
 ![image](https://github.com/mathewsrc/machine-learning-monitoring-with-evidently/assets/94936606/bd8e8b6f-f030-44d7-af12-e835813d5e29)
