@@ -52,9 +52,33 @@ TODO
 
 TODO
 
+![image](https://github.com/mathewsrc/machine-learning-monitoring-with-evidently/assets/94936606/0e560813-13aa-424c-ac78-e6338ec13166)
+
+
 ## Model Evaluation
 
-TODO
+Batches date period
+
+```
+┌─────────────────┬────────────┐
+│ min(start_date) │  end_date  │
+│      date       │    date    │
+├─────────────────┼────────────┤
+│ 2022-01-03      │ 2022-07-03 │
+│ 2022-02-01      │ 2022-08-01 │
+│ 2022-03-01      │ 2022-09-01 │
+└─────────────────┴────────────┘
+```
+
+Reference dataset
+
+```
+1991-12-03 00:00:00
+2021-01-01 00:00:00
+```
+
+![image](https://github.com/mathewsrc/machine-learning-monitoring-with-evidently/assets/94936606/bd8e8b6f-f030-44d7-af12-e835813d5e29)
+
 
 ## Model Deployment
 
