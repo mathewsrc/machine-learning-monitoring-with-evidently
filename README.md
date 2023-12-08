@@ -2,12 +2,12 @@
 ML Monitoring Capstone
 
 ## Summary
-* Desenvolvimento de modelos de machine learning com Pyspark ML.
-* Monitoramento de modelos (ML monitoring)  (data drift, prediction drift e  métricas de performance dos modelos) com Evidentlyai.
-* Extração, Transformação e carregamento de dados de API com Pyspark, Spark SQL e DuckDB.
-* Checagem de qualidade de dados coma biblioteca Soda.
-* Tracking e Model Registry com MLflow.
-* Através do projeto foi possível desenvolver um modelo com AUC igual a 75% e monitorar data drift nos dados e prediction drift no modelo.
+* Development of machine learning models with Pyspark ML.
+* Model monitoring (ML monitoring) (data drift, prediction drift, and model performance metrics) with Evidentlyai.
+* Extraction, Transformation, and loading of API data with Pyspark, Spark SQL, and DuckDB.
+* Data quality check with the Soda library.
+* Tracking and Model Registry with MLflow.
+* Through the project it was possible to develop a model with an AUC equal to 75% and monitor data drift in the data and prediction drift in the model.
 
 Sections
 
