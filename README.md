@@ -1,6 +1,13 @@
 # machine-learning-monitoring-with-evidently
 ML Monitoring Capstone
 
+## Summary
+* Desenvolvimento de modelos de machine learning com Pyspark ML.
+* Monitoramento de modelos (ML monitoring)  (data drift, prediction drift e  métricas de performance dos modelos) com Evidentlyai.
+* Extração, Transformação e carregamento de dados de API com Pyspark, Spark SQL e DuckDB.
+* Checagem de qualidade de dados coma biblioteca Soda.
+* Tracking e Model Registry com MLflow.
+* Através do projeto foi possível desenvolver um modelo com AUC igual a 75% e monitorar data drift nos dados e prediction drift no modelo.
 
 Sections
 
