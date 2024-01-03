@@ -39,6 +39,21 @@ TODO
 
 ## How to Run this Project
 
+
+### Generating plots using CLI
+
+Run the following command to see all CLI options
+
+```bash
+poetry run python src/visualizations/visualizer.py 
+```
+
+For example we can run the following command to visualize the Contracts over time
+
+```bash
+poetry run python src/visualizations/visualizer.py contracts-over-time
+```
+
 ### Prerequisites
 
 TODO
