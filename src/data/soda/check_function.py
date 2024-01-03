@@ -1,9 +1,9 @@
-def check(scan_name, data_source, checks_subpath=None, duckdb_conn=None, project_root='include'):
+def check(scan_name, data_source, checks_subpath=None, duckdb_conn=None, project_root='src'):
     from soda.scan import Scan
 
     print('Running Soda Scan ...')
-    config_file = f'{project_root}/soda/configuration.yml'
-    checks_path = f'{project_root}/soda/checks'
+    config_file = f'{project_root}/data/soda/configuration.yml'
+    checks_path = f'{project_root}/data/soda/checks'
 
     if checks_subpath:
         checks_path += f'/{checks_subpath}'
