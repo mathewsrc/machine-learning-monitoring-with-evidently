@@ -7,24 +7,23 @@ from prefect import task
 import duckdb
 from soda.check_function import check
 
-
 @task(
     name="Extract Supplier Contract API data",
     description="Get API data from URL and read it as Spark DataFrame",
     tags=['supplier', 'vendor', 'contract'],
     cache_expiration=timedelta(days=1),
-    retries=3,
+    retries=0,
     retry_delay_seconds=5
 )
 def extract():
 
     logging.info('Extracting Supplier Contract API data...')
 
-    if not os.path.exists("supplier.db"):
+    if  os.path.exists("supplier.db"):
         logging.info("Database not found; downloading data from API.")
 
         try:
-            api_url = 'https://data.sfgov.org/resource/cqi5-hm2d.json?$limit=50000'
+            api_url = 'https://data.sfgov.org/resource/cqi5-hm2d.json?$limit=1000'
             response = requests.get(api_url)
             response.raise_for_status()  
 
@@ -33,8 +32,8 @@ def extract():
 
             with duckdb.connect("supplier.db") as conn:
                 conn.sql(f"""CREATE OR REPLACE TABLE supplier_raw_table AS
-                            SELECT * FROM {df_api}""")
-                conn.sql("SELECT COUNT(*) FROM supplier_raw_table").show()
+                             SELECT * FROM df_api""")
+                #conn.sql("SELECT COUNT(*) FROM supplier_raw_table").show()
 
         except requests.RequestException as e:
             raise Exception(f'Error extracting data from API: {e}')
