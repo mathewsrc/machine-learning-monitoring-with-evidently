@@ -23,6 +23,8 @@ streamlit = "^1.29.0"
 pandas = "^2.1.4"
 matplotlib = "^3.8.2"
 seaborn = "^0.13.1"
+polars = "^0.20.3"
+prefect-shell = "^0.2.2"
 
 
 [build-system]
