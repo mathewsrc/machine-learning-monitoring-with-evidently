@@ -19,7 +19,7 @@ def extract():
 
     logging.info('Extracting Supplier Contract API data...')
 
-    if  os.path.exists("supplier.db"):
+    if not os.path.exists("supplier.db"):
         logging.info("Database not found; downloading data from API.")
 
         try:
@@ -33,7 +33,6 @@ def extract():
             with duckdb.connect("supplier.db") as conn:
                 conn.sql(f"""CREATE OR REPLACE TABLE supplier_raw_table AS
                              SELECT * FROM df_api""")
-                #conn.sql("SELECT COUNT(*) FROM supplier_raw_table").show()
 
         except requests.RequestException as e:
             raise Exception(f'Error extracting data from API: {e}')
