@@ -1,0 +1,16 @@
+pyspark
+duckdb
+prefect
+mlflow
+evidently
+soda-core-duckdb
+pytest
+pytest-cov
+ruff
+click
+joblib
+tqdm
+streamlit
+pandas
+matplotlib
+seaborn
