@@ -14,3 +14,5 @@ streamlit
 pandas
 matplotlib
 seaborn
+polars
+prefect-shell
