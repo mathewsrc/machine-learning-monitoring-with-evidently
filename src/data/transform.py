@@ -132,7 +132,7 @@ def transform():
             df_pandas = df_spark.toPandas()
 
             conn.sql(f"""CREATE OR REPLACE TABLE supplier_transformed_table AS
-                        SELECT * FROM {df_pandas}""")
+                        SELECT * FROM df_pandas""")
         return df_spark
 
     except Exception as e:
