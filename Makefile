@@ -19,6 +19,10 @@ test:
 	@echo "Testing all projects with pytest"
 	./test.sh
 
+poetry-add:
+	@echo "Installing dependencies with poetry"
+	poetry add $(cat requirements.txt)
+
 mlflow-init:
 	@echo "Starting MLflow"
 	mlflow ui
