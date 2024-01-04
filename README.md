@@ -7,7 +7,6 @@ ML Monitoring Capstone
 * Extraction, Transformation, and loading of API data with Pyspark, Spark SQL, and DuckDB.
 * Data quality check with the Soda library.
 * Tracking and Model Registry with MLflow.
-* Through the project it was possible to develop a model with an AUC equal to 75% and monitor data drift in the data and prediction drift in the model.
 
 Sections
 
