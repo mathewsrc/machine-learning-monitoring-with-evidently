@@ -4,7 +4,6 @@ from pathlib import Path
 import click
 import seaborn as sns
 import polars as pl
-from datetime import timedelta
 
 @click.group()
 def cli():
