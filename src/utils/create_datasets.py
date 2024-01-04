@@ -11,21 +11,20 @@ def get_experiments_batches(end_date_0):
                 RANK() OVER (ORDER BY month) AS rank
             FROM
                 supplier_transformed_table
-            WHERE start_date > '{end_date_0}'
+            WHERE start_date > '{end_date_0}' 
             )
-        SELECT
-            MIN(start_date),
-            DATE_ADD(MIN(start_date), INTERVAL 6 MONTH) AS end_date,
-        FROM
-            rank_month
-        GROUP BY
-            rank
-        LIMIT 10;
-        """
+            SELECT
+                MIN(start_date),
+                DATE_ADD(MIN(start_date), INTERVAL 6 MONTH) AS end_date,
+            FROM
+                rank_month
+            GROUP BY
+                rank
+            LIMIT 10;
+            """
         )
-        experiment_batches_sql.show()
-        experiment_batches=[(start.strftime("%Y-%m-%d"),
-                            end.strftime("%Y-%m-%d")) for start, end in
+        experiment_batches=[(start.strftime("%Y-%m-%d %H:%M:%S"),
+                            end.strftime("%Y-%m-%d %H:%M:%S")) for start, end in
                             experiment_batches_sql.fetchall() ]
         
     return experiment_batches
@@ -51,42 +50,38 @@ def get_reference_period():
         
         return start_date_0, end_date_0
     
-    
-    
 def create_reference_dataset():
     with duckdb.connect("supplier.db") as conn:
         start_date_0, end_date_0 = get_reference_period()
-        
+        print(f"Reference period: {start_date_0} to {end_date_0}")
+
         conn.sql(
                 f"""
                 CREATE OR REPLACE TABLE reference_table AS
                 SELECT *
                 FROM supplier_transformed_table
-                WHERE start_date >= '{start_date_0}' AND start_date <= '{end_date_0}'
+                WHERE  end_date <= '{end_date_0}';
+                SELECT * FROM reference_table LIMIT 5;
                 """
-        )
+        ).show()
     
         
 def create_production_datasets():
     with duckdb.connect("supplier.db") as conn:
-        start_data_0, end_date_0 = get_reference_period()
+        start_date_0, end_date_0 = get_reference_period()
         experiment_batches = get_experiments_batches(end_date_0)
         
-        print(f"Reference period: {start_data_0} to {end_date_0}")
         print(f"Experiment batches: {experiment_batches}")
         
-        
         for i, (start_date, end_date) in enumerate(experiment_batches):
-            print(start_date, end_date)
             conn.sql(
                 f"""
                 CREATE OR REPLACE TABLE production_table_{i} AS
                 SELECT *
                 FROM supplier_transformed_table
-                WHERE start_date BETWEEN '{start_date}' AND '{start_date}'
+                WHERE start_date >= '{start_date}' AND  end_date <= '{end_date}'
                 """
             )
-            
     
         conn.sql("""
                 DROP TABLE IF EXISTS production_table;
@@ -108,13 +103,11 @@ def create_production_datasets():
         # print table data
         conn.sql(
             f"""
-            SELECT start_date, end_date
+            SELECT *
             FROM production_table
-            ORDER BY start_date DESC
+            LIMIT 5
             """
         ).show()
-            
-            
             
 if __name__ == "__main__":
     create_reference_dataset()
