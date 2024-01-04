@@ -83,7 +83,7 @@ def create_production_datasets():
                 CREATE OR REPLACE TABLE production_table_{i} AS
                 SELECT *
                 FROM supplier_transformed_table
-                WHERE YEAR(start_date) BETWEEN 2018 AND 2020
+                WHERE start_date BETWEEN '{start_date}' AND '{start_date}'
                 """
             )
             
@@ -101,7 +101,7 @@ def create_production_datasets():
             conn.sql(
                 f"""
                 INSERT INTO production_table
-                SELECT * FROM production_table_{i};
+                SELECT * FROM production_table_{i} ;
                 """
             )
             
@@ -110,6 +110,7 @@ def create_production_datasets():
             f"""
             SELECT start_date, end_date
             FROM production_table
+            ORDER BY start_date DESC
             """
         ).show()
             
