@@ -16,6 +16,9 @@ from evidently.tests import (
 import pendulum
 import logging
 from pathlib import Path
+from prefect import task
+from datetime import timedelta
+
 
 def build_column_mapping():
     
@@ -106,7 +109,6 @@ def load_parse_test_dict(tests):
     output.append((test['name'], test['status']))
   return output
 
-
 def eval_tests(reference, production,
                column_mapping, model_name,
                tags=[], batch_size=None):
@@ -143,10 +145,11 @@ def eval_tests(reference, production,
     if not Path('output/model/tests').exists():
         Path('output/model/tests').mkdir(parents=True)
         
-    tests.save(
-        f'output/model/tests/{model_name.lower()}_tests_snapshot.json')
-    tests.save_html(
-        f'output/model/tests/{model_name.lower()}_tests_snapshot.html')
+    html_path = Path(f'output/model/tests/{model_name.lower()}_tests_snapshot.html')
+    json_path = Path(f'output/model/tests/{model_name.lower()}_tests_snapshot.json')
+    
+    tests.save(str(json_path))
+    tests.save_html(str(html_path))
 
     return load_parse_test_dict(tests)
   except Exception as e:
