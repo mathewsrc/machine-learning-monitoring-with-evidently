@@ -4,6 +4,7 @@ import requests
 import pandas as pd
 from datetime import timedelta
 from prefect import task
+from pathlib import Path
 import duckdb
 from soda.check_function import check
 
@@ -23,17 +24,25 @@ def extract():
         logging.info("Database not found; downloading data from API.")
 
         try:
-            api_url = 'https://data.sfgov.org/resource/cqi5-hm2d.json?$limit=5000'
+            api_url = 'https://data.sfgov.org/resource/cqi5-hm2d.json?$limit=1000'
             response = requests.get(api_url)
             response.raise_for_status()  
 
             data = response.json()
             df_api = pd.json_normalize(data)
-
+            
+            if not Path('datasets').exists():
+                Path('datasets').mkdir(exist_ok=True)
+                
+            df_api.to_parquet(Path('datasets/supplier_raw_table.parquet'))
+            
             with duckdb.connect("supplier.db") as conn:
-                conn.sql(f"""CREATE OR REPLACE TABLE supplier_raw_table AS
-                             SELECT * FROM df_api""")
-
+                conn.sql("""
+                         CREATE OR REPLACE TABLE supplier_raw_table AS
+                         SELECT * FROM 'datasets/supplier_raw_table.parquet';
+                         DESCRIBE supplier_raw_table
+                         """).show()
+                
         except requests.RequestException as e:
             raise Exception(f'Error extracting data from API: {e}')
 
