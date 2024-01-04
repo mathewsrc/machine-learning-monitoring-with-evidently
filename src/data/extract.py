@@ -24,7 +24,7 @@ def extract():
         logging.info("Database not found; downloading data from API.")
 
         try:
-            api_url = 'https://data.sfgov.org/resource/cqi5-hm2d.json?$limit=1000'
+            api_url = 'https://data.sfgov.org/resource/cqi5-hm2d.json?$limit=50000'
             response = requests.get(api_url)
             response.raise_for_status()  
 

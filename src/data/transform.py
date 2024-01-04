@@ -134,7 +134,7 @@ def transform():
             conn.sql(f"""
                      CREATE OR REPLACE TABLE supplier_transformed_table AS
                      SELECT * FROM 'datasets/supplier_transformed_table.parquet';
-                     DESCRIBE supplier_transformed_table
+                     DESCRIBE supplier_transformed_table;
                      """).show()
            
         return df_spark
