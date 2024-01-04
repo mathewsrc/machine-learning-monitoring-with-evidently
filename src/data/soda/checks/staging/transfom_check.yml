@@ -10,11 +10,11 @@ checks for supplier_transformed_table:
       name: Ensure that all rows are unique
       fail: when > 0 
   - invalid_percent(start_date) < 20%:
-      name: Ensure start date values are formatted as (yyyy/mm/dd)
-      valid format: date inverse
+      name: Ensure start date values are formatted as timestamp 
+      valid regex: ^\d{4}-\d{2}-\d{2}$
   - invalid_percent(end_date) < 20%:
-      name: Ensure end_date values are formatted as (yyyy/mm/dd)
-      valid format: date inverse
+      name: Ensure end_date values are formatted as timestamp 
+      valid regex: ^\d{4}-\d{2}-\d{2}$
   - invalid_count(has_outstanding_orders) = 0:
       name: Ensure has_outstanding_orders column has valid values
       valid values: [True, False]
@@ -73,8 +73,8 @@ checks for supplier_transformed_table:
 
         when wrong column type:
             contract_title: varchar
-            term_start_date: varchar
-            term_end_date: varchar
+            term_start_date: timestamp
+            term_end_date: timestamp
             contract_type: varchar
             purchasing_authority: varchar
             department_code: varchar
@@ -84,10 +84,10 @@ checks for supplier_transformed_table:
             project_team_lbe_status: varchar
             supplier_type: varchar
             scope_of_work: varchar
-            contract_awarded_amount: float
-            purchase_orders_outstanding: float
-            payments_made: float
-            remaining_contract_award_amount: float
+            contract_awarded_amount: double
+            purchase_orders_outstanding: double
+            payments_made: double
+            remaining_contract_award_amount: double
             contract_number: varchar
             non_profit: varchar
             start_date: date
