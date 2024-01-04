@@ -3,7 +3,7 @@ from pyspark.ml.feature import (
     VectorAssembler, Imputer, StandardScaler, StringIndexer, OneHotEncoder
 )
 
-def build_feature_pipeline(model, numeric_cols, categorical_cols):
+def build_pipeline(model, numeric_cols, categorical_cols):
     indexers = [StringIndexer(inputCol=col, outputCol=f"{col}_indexed")
     for col in categorical_cols]
 
