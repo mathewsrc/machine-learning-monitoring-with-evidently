@@ -12,6 +12,7 @@ from soda.check_function import check
     name="Extract Supplier Contract API data",
     description="Get API data from URL and read it as Spark DataFrame",
     tags=['supplier', 'vendor', 'contract'],
+    log_prints=True,
     cache_expiration=timedelta(days=1),
     retries=0,
     retry_delay_seconds=5

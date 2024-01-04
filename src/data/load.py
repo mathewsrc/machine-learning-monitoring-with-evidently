@@ -10,6 +10,7 @@ import duckdb
     tags=['supplier', 'vendor', 'contract'],
     cache_expiration=timedelta(days=1),
     retries=3,
+    log_prints=True,
     retry_delay_seconds=5
 )
 def load(df_spark, table_name="supplier_transformed_table"):

@@ -110,6 +110,7 @@ def filter_positive_values(df_spark):
     description="Transform raw supplier contract data into a clean format",
     tags=['supplier', 'vendor', 'contract'],
     cache_expiration=timedelta(days=1),
+    log_prints=True,
     retries=3,
     retry_delay_seconds=5
 )
