@@ -1,8 +1,7 @@
 checks for supplier_raw_table:
   - row_count:
       fail:
-        when < 499
-        when > 501
+        when < 10000
       name: Check the number of rows
 
   - schema:
@@ -18,8 +17,8 @@ checks for supplier_raw_table:
 
         when wrong column type:
             contract_title: varchar
-            term_start_date: timestamp
-            term_end_date: timestamp
+            term_start_date: varchar
+            term_end_date: varchar
             contract_type: varchar
             purchasing_authority: varchar
             department_code: varchar
@@ -29,10 +28,10 @@ checks for supplier_raw_table:
             project_team_lbe_status: varchar
             project_team_constituent: varchar
             scope_of_work: varchar
-            agreed_amt: double
-            consumed_amt: double
-            pmt_amt: double
-            remaining_amt: double
+            agreed_amt: varchar
+            consumed_amt: varchar
+            pmt_amt: varchar
+            remaining_amt: varchar
             contract_no: varchar
             non_profit: varchar
             sole_source_flg: varchar

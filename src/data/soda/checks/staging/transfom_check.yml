@@ -69,12 +69,14 @@ checks for supplier_transformed_table:
                                       'contract_awarded_amount', 'purchase_orders_outstanding',
                                       'payments_made', 'remaining_contract_award_amount', 
                                       'contract_number', 'non_profit', 'start_date', 'end_date',
-                                      'is_sole_source', 'has_outstanding_orders']
+                                      'is_sole_source', 'has_outstanding_orders', 'is_non_profit', 
+                                      'start_month', 'end_month', 'start_year', 'end_year',
+                                      'start_day', 'end_day']
 
         when wrong column type:
             contract_title: varchar
-            term_start_date: timestamp
-            term_end_date: timestamp
+            term_start_date: varchar
+            term_end_date: varchar
             contract_type: varchar
             purchasing_authority: varchar
             department_code: varchar
@@ -95,4 +97,10 @@ checks for supplier_transformed_table:
             is_sole_source: integer
             has_outstanding_orders: integer
             is_non_profit: integer
+            start_month: integer
+            end_month: integer
+            start_year: integer
+            end_year: integer
+            start_day: integer
+            end_day: integer
 
